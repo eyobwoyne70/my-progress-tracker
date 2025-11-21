@@ -1,0 +1,225 @@
+:root {
+  --bg: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  --accent: #6b21a8;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --level-selected: #ef4444;
+  --level-selected-bg: #fee2e2;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: #0f172a;
+  min-height: 100vh;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(11, 15, 30, 0.06);
+  border-radius: 12px;
+  margin: 18px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.18);
+}
+.brand h1 {
+  font-size: 18px;
+  margin: 0;
+}
+.brand p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+nav ul {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+nav a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+nav a.active {
+  background: linear-gradient(90deg, rgba(107, 33, 168, 0.12), rgba(6, 182, 212, 0.08));
+  color: var(--accent);
+}
+.container {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 20px;
+}
+.card {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(11, 15, 30, 0.04);
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    margin: 12px;
+  }
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .brand {
+    justify-content: center;
+  }
+}
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.level {
+  background: linear-gradient(135deg, #7c3aed22, #06b6d422);
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.level-checkbox:checked + .level-num {
+  color: var(--level-selected);
+  background: var(--level-selected-bg);
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.level-num {
+  transition: all 0.2s;
+  display: inline-block;
+}
+.level:hover .level-num {
+  background: #f1f5f9;
+  border-radius: 6px;
+  padding: 10px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-top: 1rem;
+}
+.form-grid label {
+  font-weight: 600;
+  color: #374151;
+}
+.form-grid input {
+  padding: 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+}
+.form-grid input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 3px #a78bfa;
+}
+.btn-group {
+  margin-top: 1.5rem;
+}
+.add-btn, .view-btn, .back-btn, .download-btn {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.2s;
+}
+.add-btn:hover, .view-btn:hover, .back-btn:hover, .download-btn:hover {
+  background: #5b21b6;
+}
+#record-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+#record-table th, #record-table td {
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+  text-align: center;
+}
+#record-table th {
+  background-color: #ede9fe;
+  font-weight: 700;
+}
+/* --- Magazine Layout --- */
+.magazine {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  line-height: 1.6;
+}
+.magazine article {
+  background: #fff;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.magazine h2, .magazine h3 {
+  color: #6b21a8;
+  margin-top: 0;
+}
+.magazine .intro {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #7c3aed11, #06b6d411);
+}
+.img-placeholder {
+  width: 100%;
+  height: 180px;
+  border: 2px dashed #cbd5e1;
+  display: grid;
+  place-items: center;
+  color: #94a3b8;
+  margin-top: 16px;
+  border-radius: 10px;
+  font-style: italic;
+}
+.img-placeholder.large {
+  height: 260px;
+}
+ol {
+  padding-left: 20px;
+}
+@media (max-width: 800px) {
+  .magazine {
+    grid-template-columns: 1fr;
+  }
+}

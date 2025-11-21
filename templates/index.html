@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo">MP</div>
+      <div>
+        <h1>My progress</h1>
+        <p>Track your daily wins — simple, clear, focused</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home') }}" class="{{ 'active' if active=='home' else '' }}">Home</a></li>
+        <li><a href="{{ url_for('plan') }}" class="{{ 'active' if active=='plan' else '' }}">30Day plan</a></li>
+        <li><a href="{{ url_for('records') }}" class="{{ 'active' if active=='records' else '' }}">Record Table</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      {% if active == 'home' %}
+      <!-- HOME PAGE CONTENT -->
+      <section class="magazine">
+        <article class="intro">
+          <h2>Welcome to Your Growth Journal</h2>
+          <p>
+            Every change begins in the mind — the stories you tell yourself, the rules you live by,
+            and the habits you repeat daily. This space is your mental gym: psychology, life strategy,
+            and motivation — all crafted to help you transform over 30 days.
+          </p>
+        </article>
+        <!-- ... [Psychology Insights, Rules, and Motivation content here if you want] ... -->
+      </section>
+
+      {% elif active == 'plan' %}
+      <!-- 30-DAY PLAN PAGE -->
+      <h2>30-Day Plan</h2>
+      <p>Click any box to mark your progress!</p>
+      <div id="grid">
+        {% for i in range(1, 31) %}
+        <label class="level">
+          <input type="checkbox" id="level{{i}}" class="level-checkbox" style="display:none;" />
+          <span class="level-num">Level {{i}}</span>
+        </label>
+        {% endfor %}
+      </div>
+
+      {% elif active == 'records' %}
+      <!-- RECORDS PAGE -->
+      <h2>Record Table</h2>
+      <p>Fill in today’s answers and add them to your record table.</p>
+      <form method="POST" id="record-form">
+        <div class="form-grid">
+          <label>1. How is your morning mood today?</label>
+          <input type="text" name="q1" required>
+          <label>2. When did you go to bed?</label>
+          <input type="text" name="q2">
+          <label>3. Did you drink coffee today?</label>
+          <input type="text" name="q3">
+          <label>4. Did you masturbate today?</label>
+          <input type="text" name="q4">
+          <label>5. Did you watch YouTube videos?</label>
+          <input type="text" name="q5">
+          <label>6. Did you pray today?</label>
+          <input type="text" name="q6">
+          <label>7. Did you exercise or meditate today?</label>
+          <input type="text" name="q7">
+          <label>8. What is your morning energy level?</label>
+          <input type="text" name="q8">
+          <label>9. Did you see motivational video or text (Reddit)?</label>
+          <input type="text" name="q9">
+          <label>10. The task is done?</label>
+          <input type="text" name="q10">
+          <label>11. Any notes or summary for today?</label>
+          <input type="text" name="q11">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="add-btn">Add</button>
+        </div>
+      </form>
+      <div class="btn-group">
+        <a href="{{ url_for('download_csv') }}" class="download-btn">Download CSV</a>
+      </div>
+      <!-- Show table of records -->
+      {% if records %}
+      <div id="table-section">
+        <table id="record-table">
+          <thead>
+            <tr>
+              <th>Morning Mood</th>
+              <th>Bed Time</th>
+              <th>Coffee</th>
+              <th>Masturbation</th>
+              <th>YouTube</th>
+              <th>Pray</th>
+              <th>Exercise/Meditation</th>
+              <th>Energy Level</th>
+              <th>Motivation Content</th>
+              <th>Task Done</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in records %}
+            <tr>
+              {% for cell in record %}
+              <td>{{ cell }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+
+      {% endif %}
+    </div>
+  </main>
+</body>
+</html>
